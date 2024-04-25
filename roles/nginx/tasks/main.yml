@@ -1,0 +1,41 @@
+- name: Update caches
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+    name: '*'
+    state: latest
+
+- name: Ensure nginx is installed.
+  apt:
+    name: nginx
+    state: present
+
+- name: Create directory for nginx.test
+  file:
+    path: /var/www/nginx.test
+    state: directory
+
+- name: Copy index.html to nginx.test folder
+  copy:
+    src: '{{ role_path }}/files/index.html'
+    dest: /var/www/nginx.test/index.html
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy virtual server config
+  copy:
+    src: '{{ role_path }}/files/nginx.test'
+    dest: /etc/nginx/sites-available/nginx.test
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create a symbolic link for nginx.test virtual host
+  file:
+    src: /etc/nginx/sites-available/nginx.test
+    dest: /etc/nginx/sites-enabled/nginx.test
+    owner: root
+    group: root
+    state: link
+  notify: restart nginx 
