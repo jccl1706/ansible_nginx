@@ -1,0 +1,13 @@
+- name: Create folder test inside home/vagrant
+  file:
+    path: /home/vagrant/test
+    state: directory
+    mode: '0755'
+
+
+- name: clone ansible_nginx from jccl1706 repo
+  git:
+    repo: https://github.com/jccl1706/ansible_nginx.git
+    dest: /home/vagrant/test
+    single_branch: yes
+    version: main

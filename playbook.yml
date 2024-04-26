@@ -1,5 +1,9 @@
 ---
-  - hosts: nginx
-    become: yes
+  # - hosts: nginx
+  #   become: yes
+  #   roles:
+  #     - nginx
+
+  - hosts: git
     roles:
-      - nginx
+      - git
