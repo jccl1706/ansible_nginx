@@ -9,5 +9,3 @@
   git:
     repo: https://github.com/jccl1706/ansible_nginx.git
     dest: /home/vagrant/test
-    single_branch: yes
-    version: main
