@@ -37,7 +37,7 @@ EOF
     web1.vm.box = "bento/ubuntu-20.04"
     #web1.vm.network "private_network", ip: "192.168.56.102"
     #web1.vm.network "forwarded_port", guest: 80, host: 8080
-    ansible.vm.network "public_network", bridge: "wlo1"
+    web2.vm.network "public_network", bridge: "wlo1"
     web1.vm.hostname = "web1"
     web1.vm.provider "virtualbox" do |v|
       v.gui = false
